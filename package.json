@@ -1,0 +1,44 @@
+{
+  "name": "dracaena-ui",
+  "version": "0.1.0",
+  "description": "UI components library for React",
+  "author": "Grigory Bederdinov",
+  "license": "ISC",
+  "type": "module",
+  "source": "./src/components/index.tsx",
+  "module": "dist/index.js",
+  "targets": {
+    "module": {
+      "optimize": true
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "serve": "rm -rf ./serve & parcel serve src/index.html --dist-dir ./serve --public-url /",
+    "build": "parcel build --no-source-maps"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.6.0",
+    "@mui/icons-material": "^5.6.0",
+    "@parcel/packager-ts": "2.4.1",
+    "@parcel/transformer-typescript-types": "2.4.1",
+    "@types/node": "^17.0.23",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "jest": "^27.5.1",
+    "parcel": "^2.4.1",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23",
+    "typescript": ">=3.0.0"
+  },
+  "peerDependencies": {
+    "react": "18.*",
+    "react-dom": "18.*",
+    "react-router": "6.*",
+    "react-router-dom": "6.*"
+  }
+}

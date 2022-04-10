@@ -1,0 +1,9 @@
+name: End-to-end tests
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - run: yarn
+      - run: eslint . --ext .js,.jsx,.ts,.tsx
