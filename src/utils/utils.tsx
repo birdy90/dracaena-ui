@@ -1,13 +1,13 @@
-function shuffleArray(array: []) {
+function shuffleArray(arr: any[]): any[] {
   type ArrItem = { value: any, sort: number };
 
-  return array
-    .map(t => ({ value: t, sort: Math.random() }))
+  return arr
+    .map((t: any): ArrItem => ({ value: t, sort: Math.random() }))
     .sort((a: ArrItem, b: ArrItem) => a.sort - b.sort)
-    .map(t => t.value);
+    .map((t: ArrItem): any => t.value);
 }
 
-function arrayClosest(array: [], target: number) {
+function arrayClosest(array: any[], target: number) {
   return array.reduce(function (acc, t) {
     return Math.abs(t - target) < Math.abs(acc - target) ? t : acc;
   });
@@ -52,7 +52,7 @@ function throttle(func: Function, ms: number): Function {
   return wrapper;
 }
 
-const calculateScrollBarWidth = () => {
+const calculateScrollBarWidth = (): number => {
   let body = document.body;
   body.style.overflow = 'hidden';
   let width = body.clientWidth;

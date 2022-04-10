@@ -23,7 +23,7 @@ const DuiBadge = (props: DuiBadgeProps & IDuiColors) => {
 
     useEffect(() => {
         if (props.pulsating) {
-            let observer = new IntersectionObserver((entries, observer) => {
+            let observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const animationClass = `animate-contour`;
 

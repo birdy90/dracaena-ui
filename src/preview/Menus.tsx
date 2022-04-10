@@ -7,7 +7,7 @@ type PotterData = {
 }
 
 const Menus = () => {
-    const sampleData: PotterData[] = require('./sample-data.json');
+    const sampleData: PotterData[] = require('../constants/sample-data.json');
     const allHouses = sampleData.map(t => t.house).filter(t => t);
     const houses = Array.from(new Set(allHouses)) as string[];
 

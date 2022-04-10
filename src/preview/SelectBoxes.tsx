@@ -92,7 +92,7 @@ const SelectBoxes = () => {
   const [value, setValue] = useState<IDuiSelectOption[]>([]);
   const [value2, setValue2] = useState<IDuiSelectOption[]>([]);
 
-  const optionsData: PotterData[] = require('./sample-data.json');
+  const optionsData: PotterData[] = require('../constants/sample-data.json');
   const nameOptions = optionsData.map(t => ({ title: t.name,  value: t.name }));
   const fullOptions = optionsData.map(t => ({ title: t.name,  value: t }));
 

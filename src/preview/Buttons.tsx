@@ -119,7 +119,7 @@ const Buttons = () => {
             </div>
 
             <div className="flex flex-wrap gap-4 mt-4">
-                <h5>Group with invalid chlld</h5>
+                <h5>Group with invalid child</h5>
 
                 <DuiControlsGroup>
                     <DuiButton>Hello</DuiButton>

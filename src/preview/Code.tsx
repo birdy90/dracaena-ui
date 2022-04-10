@@ -14,7 +14,8 @@ const Code = () => {
             <p>And this is large code block:</p>
 
             <DuiCode>
-{`const DuiCode = (props) => {
+              {`
+const DuiCode = (props) => {
     return (
         <code className={\`
             bg-stone-100 rounded-xl
@@ -25,7 +26,8 @@ const Code = () => {
     );
 };
 
-export default DuiCode;`}
+export default DuiCode;
+              `}
             </DuiCode>
 
             <p>Here you can see the <DuiCode inline>DuiCode</DuiCode> component sources.</p>

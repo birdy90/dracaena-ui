@@ -15,7 +15,7 @@ const DuiSquareLoader = (props: Props & IDuiColors) => {
     const hash = randomString();
 
     useEffect(() => {
-        let observer = new IntersectionObserver((entries, observer) => {
+        let observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const animationClass = `ripple-${type}-animation`;
                 const items = entry.target.querySelectorAll('*');

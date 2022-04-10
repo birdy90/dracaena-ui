@@ -1,6 +1,6 @@
 import DuiInput from "./DuiInput";
 import {KeyboardArrowDown} from "@mui/icons-material";
-import {ComponentType, createRef, KeyboardEventHandler, useState} from "react";
+import React, {ComponentType, createRef, KeyboardEventHandler, useState} from "react";
 import useOnClickOutside from "../hooks/ClickOutside";
 import IDuiColors from "../interfaces/IDuiColors";
 

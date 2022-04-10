@@ -14,7 +14,7 @@ const DuiAccordion = (props: Props) => {
     const toggleOpened = (i: number) => {
         let newState = !openedArray[i]
         let newOpened = props.single ?
-            openedArray.map(t => false) :
+            openedArray.map(() => false) :
             [...openedArray];
 
         newOpened[i] = newState;

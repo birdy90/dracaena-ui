@@ -10,7 +10,7 @@ type PotterData = {
 const CheckBoxes = () => {
     const [value, setValue] = useState<DuiRadioValue>(false);
 
-    const sampleData: PotterData[] = require('./sample-data.json');
+    const sampleData: PotterData[] = require('../constants/sample-data.json');
     const options = sampleData.slice(0, 4).map(t => ({ title: t.name, value: t.name }));
 
     return (
