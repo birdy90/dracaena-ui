@@ -1,4 +1,4 @@
-import {MouseEventHandler, RefObject, useEffect} from "react";
+import { RefObject, useEffect } from 'react';
 
 function useClickOutside(ref: RefObject<HTMLElement>, handler: (event: MouseEvent | TouchEvent) => void) {
   useEffect(
@@ -11,12 +11,12 @@ function useClickOutside(ref: RefObject<HTMLElement>, handler: (event: MouseEven
         handler(event);
       };
 
-      document.addEventListener("mousedown", listener);
-      document.addEventListener("touchstart", listener);
+      document.addEventListener('mousedown', listener);
+      document.addEventListener('touchstart', listener);
 
       return () => {
-        document.removeEventListener("mousedown", listener);
-        document.removeEventListener("touchstart", listener);
+        document.removeEventListener('mousedown', listener);
+        document.removeEventListener('touchstart', listener);
       };
     },
 
@@ -26,7 +26,7 @@ function useClickOutside(ref: RefObject<HTMLElement>, handler: (event: MouseEven
     // ... callback/cleanup to run every render. It's not a big deal ...
     // ... but to optimize you can wrap handler in useCallback before ...
     // ... passing it into this hook.
-    [ref, handler]
+    [ref, handler],
   );
 }
 

@@ -1,57 +1,59 @@
-import {useEffect} from "react";
-import {randomString} from "../../utils/utils";
+import React, { useEffect } from 'react';
+import { randomString } from '../../utils/utils';
 
 type DuiSvgSpinnerProps = {
   className?: string,
   dark?: boolean,
-}
+};
 
-const DuiSvgSpinner = (props: DuiSvgSpinnerProps) => {
-    const thickness = 12;
-    const size = 100;
+function DuiSvgSpinner(props: DuiSvgSpinnerProps) {
+  const thickness = 12;
+  const size = 100;
 
-    const innerSize = size - thickness * 2;
-    const half = size / 2;
-    const innerHalf = innerSize / 2;
+  const innerSize = size - thickness * 2;
+  const half = size / 2;
+  const innerHalf = innerSize / 2;
 
-    const hash = randomString();
+  const hash = randomString();
 
-    useEffect(() => {
-        let observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const animationClass = `animate-spin-slow`;
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const animationClass = 'animate-spin-slow';
 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(animationClass);
-                } else {
-                    entry.target.classList.remove(animationClass);
-                }
-            });
-        });
-        const observeTarget = document.querySelector(`#dui-spinner-${hash}`);
-        if (observeTarget) {
-          observer.observe(observeTarget);
+        if (entry.isIntersecting) {
+          entry.target.classList.add(animationClass);
+        } else {
+          entry.target.classList.remove(animationClass);
         }
+      });
     });
+    const observeTarget = document.querySelector(`#dui-spinner-${hash}`);
+    if (observeTarget) {
+      observer.observe(observeTarget);
+    }
+  });
 
-    return (
-        <svg
-            id={`dui-spinner-${hash}`}
-            width="24" height="24"
-            viewBox={`0,0,${size},${size}`}
-            className={`
-                ${ props.dark ? 'fill-stone-400' : 'fill-stone-200' }
-                ${ props.className }
+  return (
+    <svg
+      id={`dui-spinner-${hash}`}
+      width="24"
+      height="24"
+      viewBox={`0,0,${size},${size}`}
+      className={`
+                ${props.dark ? 'fill-stone-400' : 'fill-stone-200'}
+                ${props.className}
             `}
-        >
-            <path d={`
+    >
+      <path d={`
                 M ${half} 0
                 A ${half} ${half} 0 1 1 0 ${half}
                 L ${thickness} ${half}
                 A ${innerHalf} ${innerHalf} 0 1 0 ${half} ${thickness}
-            `} />
-        </svg>
-    );
-};
+            `}
+      />
+    </svg>
+  );
+}
 
 export default DuiSvgSpinner;

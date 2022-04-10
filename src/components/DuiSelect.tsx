@@ -1,8 +1,8 @@
-import DuiInput from "./DuiInput";
-import {KeyboardArrowDown} from "@mui/icons-material";
-import React, {ComponentType, createRef, KeyboardEventHandler, useState} from "react";
-import useOnClickOutside from "../hooks/ClickOutside";
-import IDuiColors from "../interfaces/IDuiColors";
+import { KeyboardArrowDown } from '@mui/icons-material';
+import React, { ComponentType, createRef, useState } from 'react';
+import DuiInput from './DuiInput';
+import useOnClickOutside from '../hooks/ClickOutside';
+import IDuiColors from '../interfaces/IDuiColors';
 
 type SelectProps = {
   value: IDuiSelectOption[],
@@ -16,7 +16,7 @@ type SelectProps = {
   disabled?: boolean,
 
   optionComponent?: ComponentType<SelectOptionProps>,
-}
+};
 
 interface IDuiSelectOption {
   title: string;
@@ -27,24 +27,24 @@ interface IDuiSelectOption {
 type SelectOptionProps = {
   option: IDuiSelectOption,
   onSelect: () => void,
-}
+};
 
-const DuiSelectOption = (props: SelectOptionProps) => {
+function DuiSelectOption(props: SelectOptionProps) {
   return (
     <div
       className={`
                 py-2 px-4 cursor-pointer hover:bg-stone-100
                 focus:bg-red-500
-                ${ props.option.selected ? 'bg-stone-200' : '' }
+                ${props.option.selected ? 'bg-stone-200' : ''}
             `}
       onClick={props.onSelect}
     >
       { props.option.title }
     </div>
-  )
+  );
 }
 
-const DuiSelect = (props: SelectProps & IDuiColors) => {
+function DuiSelect(props: SelectProps & IDuiColors) {
   const selectRef = createRef<HTMLDivElement>();
 
   const OptionComponent = props.optionComponent || DuiSelectOption;
@@ -57,8 +57,8 @@ const DuiSelect = (props: SelectProps & IDuiColors) => {
   const setNewDataValue = (val: IDuiSelectOption[]) => {
     setDataValue(val);
     props.onChange(val);
-    setDisplayedData(val.map(t => t.title).join(', '));
-  }
+    setDisplayedData(val.map((t) => t.title).join(', '));
+  };
 
   const onOptionSelect = (optionValue: IDuiSelectOption):void => {
     let newData: any[];
@@ -66,15 +66,15 @@ const DuiSelect = (props: SelectProps & IDuiColors) => {
 
     if (props.multiselect) {
       newOptions = [...options];
-      let optionIndex = newOptions.indexOf(optionValue);
-      let newSelectedValue = !newOptions[optionIndex].selected;
+      const optionIndex = newOptions.indexOf(optionValue);
+      const newSelectedValue = !newOptions[optionIndex].selected;
       newOptions[optionIndex].selected = newSelectedValue;
       setOptions(newOptions);
 
       if (newSelectedValue) {
         newData = [...dataValue, optionValue];
       } else {
-        newData = dataValue.filter(t => t !== optionValue);
+        newData = dataValue.filter((t) => t !== optionValue);
       }
     } else {
       newData = [optionValue];
@@ -82,39 +82,35 @@ const DuiSelect = (props: SelectProps & IDuiColors) => {
     }
 
     setNewDataValue(newData);
-  }
+  };
 
   const onClearData = () => {
     setNewDataValue([]);
     setOptionsVisibility(false);
-  }
+  };
 
   const onKeyUp = (e: React.KeyboardEvent<Element>) => {
-    const key = e.key;
+    const { key } = e;
     if (key === 'Escape' || key === 'Esc') {
       setOptionsVisibility(false);
-
     } else if (key === 'Enter' || key === ' ') {
       setOptionsVisibility(true);
-
     } else if (key === 'ArrowLeft' || key === 'ArrowUp') {
       e.preventDefault();
       if (props.multiselect) return;
       let currentIndex = options.indexOf(dataValue[0]);
       currentIndex = Math.max(0, currentIndex - 1);
-      let newData = [options[currentIndex]];
+      const newData = [options[currentIndex]];
       setNewDataValue(newData);
-
     } else if (key === 'ArrowRight' || key === 'ArrowDown') {
       e.preventDefault();
       if (props.multiselect) return;
       let currentIndex = options.indexOf(dataValue[0]);
       currentIndex = Math.min(options.length - 1, currentIndex + 1);
-      let newData = [options[currentIndex]];
+      const newData = [options[currentIndex]];
       setNewDataValue(newData);
-
     }
-  }
+  };
 
   useOnClickOutside(selectRef, () => {
     setOptionsVisibility(false);
@@ -134,40 +130,42 @@ const DuiSelect = (props: SelectProps & IDuiColors) => {
         className="cursor-pointer"
         readonly
         placeholder={props.placeholder}
-        value={ displayedData }
+        value={displayedData}
         clearable
         onClick={() => setOptionsVisibility(!areOptionsVisible)}
         onClear={onClearData}
-        {...{accent: props.accent}}
-        {...{secondary: props.secondary}}
-        {...{alert: props.alert}}
-        {...{disabled: props.disabled}}
+        {...{ accent: props.accent }}
+        {...{ secondary: props.secondary }}
+        {...{ alert: props.alert }}
+        {...{ disabled: props.disabled }}
       >
         { props.readonly ? null : <KeyboardArrowDown /> }
       </DuiInput>
 
-      { props.readonly ? null : <div
-        className={`
-            ${ areOptionsVisible ? 'block' : 'hidden' }
+      { props.readonly ? null : (
+        <div
+          className={`
+            ${areOptionsVisible ? 'block' : 'hidden'}
             overflow-y-scroll bg-white
             border border-stone-400 max-h-96 mt-2
             rounded-[20px] absolute w-full z-10
             left-0 top-full
         `}
-      >
-        <div className={`block h-full py-2`}>
-          {options.map((t, i) => (
-            <OptionComponent
-              option={t}
-              onSelect={() => onOptionSelect(t)}
-              key={i}
-            />
-          ))}
+        >
+          <div className="block h-full py-2">
+            {options.map((t, i) => (
+              <OptionComponent
+                option={t}
+                onSelect={() => onOptionSelect(t)}
+                key={i}
+              />
+            ))}
+          </div>
         </div>
-      </div> }
+      ) }
     </div>
   );
-};
+}
 
 export default DuiSelect;
 

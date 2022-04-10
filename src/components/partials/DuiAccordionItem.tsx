@@ -1,5 +1,5 @@
-import {ExpandLess} from "@mui/icons-material";
-import React from "react";
+import { ExpandLess } from '@mui/icons-material';
+import React from 'react';
 
 type DuiAccordionItemProps = {
   isOpened?: boolean,
@@ -7,14 +7,14 @@ type DuiAccordionItemProps = {
   title: string,
   children: any,
   badge?: any,
-}
+};
 
-const DuiAccordionItem = (props: DuiAccordionItemProps) => {
+function DuiAccordionItem(props: DuiAccordionItemProps) {
   const toggleOpened = () => {
     if (props.toggleOpened) {
       props.toggleOpened();
     }
-  }
+  };
 
   const headerClasses = `
     flex items-center justify-between px-4 py-2
@@ -37,11 +37,12 @@ const DuiAccordionItem = (props: DuiAccordionItemProps) => {
         <span>{ props.title }</span>
         <ExpandLess className={`
           transition-transform
-          ${ props.isOpened ? '-rotate-180' : '' }
-        `} />
+          ${props.isOpened ? '-rotate-180' : ''}
+        `}
+        />
       </header>
 
-      <div className={`border-t border-t-stone-200 p-4 pb-6 ${ props.isOpened ? '' : 'hidden' }`}>
+      <div className={`border-t border-t-stone-200 p-4 pb-6 ${props.isOpened ? '' : 'hidden'}`}>
         { props.children }
       </div>
 

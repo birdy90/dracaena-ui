@@ -1,20 +1,23 @@
-import DuiCode from "../components/DuiCode";
-import DuiContainer from "../components/layout/DuiContainer";
+import DuiCode from '../components/DuiCode';
+import DuiContainer from '../components/layout/DuiContainer';
 
-const Code = () => {
-    return (
-        <DuiContainer centered className="flex flex-col gap-2">
-            <h2>Code blocks</h2>
+function Code() {
+  return (
+    <DuiContainer centered className="flex flex-col gap-2">
+      <h2>Code blocks</h2>
 
-            <p>
-                This is some <DuiCode inline>inline code block</DuiCode>. Can be used to highlight
-                things in paragraph.
-            </p>
+      <p>
+        This is some
+        {' '}
+        <DuiCode inline>inline code block</DuiCode>
+        . Can be used to highlight
+        things in paragraph.
+      </p>
 
-            <p>And this is large code block:</p>
+      <p>And this is large code block:</p>
 
-            <DuiCode>
-              {`
+      <DuiCode>
+        {`
 const DuiCode = (props) => {
     return (
         <code className={\`
@@ -28,11 +31,16 @@ const DuiCode = (props) => {
 
 export default DuiCode;
               `}
-            </DuiCode>
+      </DuiCode>
 
-            <p>Here you can see the <DuiCode inline>DuiCode</DuiCode> component sources.</p>
-        </DuiContainer>
-    );
-};
+      <p>
+        Here you can see the
+        <DuiCode inline>DuiCode</DuiCode>
+        {' '}
+        component sources.
+      </p>
+    </DuiContainer>
+  );
+}
 
 export default Code;

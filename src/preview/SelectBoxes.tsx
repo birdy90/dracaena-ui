@@ -1,13 +1,15 @@
-import DuiSelect, {IDuiSelectOption, SelectOptionProps} from "../components/DuiSelect";
-import DuiContainer from "../components/layout/DuiContainer";
-import {useState} from "react";
+import { useState } from 'react';
+import DuiSelect, { IDuiSelectOption, SelectOptionProps } from '../components/DuiSelect';
+import DuiContainer from '../components/layout/DuiContainer';
+
+const optionsData: PotterData[] = require('../constants/sample-data.json');
 
 type PotterData = {
   house: string,
   name: string,
-}
+};
 
-const CustomSelectOption = (props: SelectOptionProps) => {
+function CustomSelectOption(props: SelectOptionProps) {
   const item = props.option.value;
 
   const houseStyles = (letter: string): {} => {
@@ -38,16 +40,17 @@ const CustomSelectOption = (props: SelectOptionProps) => {
           color: '#777',
         };
     }
-  }
+  };
 
   return (
     <div
       className={`
         py-2 px-4 cursor-pointer hover:bg-stone-100
         focus:bg-red-500
-        ${ item.selected ? 'bg-stone-200' : '' }
+        ${item.selected ? 'bg-stone-200' : ''}
       `}
       onClick={props.onSelect}
+      onKeyUp={props.onSelect}
     >
       <div className="flex items-center gap-4">
         <div
@@ -68,12 +71,17 @@ const CustomSelectOption = (props: SelectOptionProps) => {
               ? <span className="text-emerald-500">Alive</span>
               : <span className="text-red-500">Dead</span> }
             { item.ancestry ? <span className="text-stone-400">{ item.ancestry }</span> : null }
-            { item.patronus ? <span>patronus: { item.patronus }</span> : null }
+            { item.patronus ? (
+              <span>
+                patronus:
+                { item.patronus }
+              </span>
+            ) : null }
           </div>
         </div>
 
         <img
-          src={ item.image }
+          src={item.image}
           alt=""
           loading="lazy"
           className="
@@ -85,16 +93,15 @@ const CustomSelectOption = (props: SelectOptionProps) => {
         />
       </div>
     </div>
-  )
+  );
 }
 
-const SelectBoxes = () => {
+function SelectBoxes() {
   const [value, setValue] = useState<IDuiSelectOption[]>([]);
   const [value2, setValue2] = useState<IDuiSelectOption[]>([]);
 
-  const optionsData: PotterData[] = require('../constants/sample-data.json');
-  const nameOptions = optionsData.map(t => ({ title: t.name,  value: t.name }));
-  const fullOptions = optionsData.map(t => ({ title: t.name,  value: t }));
+  const nameOptions = optionsData.map((t) => ({ title: t.name, value: t.name }));
+  const fullOptions = optionsData.map((t) => ({ title: t.name, value: t }));
 
   return (
     <DuiContainer centered className="flex flex-col gap-2">
@@ -104,8 +111,8 @@ const SelectBoxes = () => {
         <p>
           Single select:
           <span className="mx-2 text-emerald-500 font-bold">
-                        {JSON.stringify(value[0]) || "-"}
-                    </span>
+            {JSON.stringify(value[0]) || '-'}
+          </span>
         </p>
 
         <DuiSelect
@@ -118,8 +125,8 @@ const SelectBoxes = () => {
         <p>
           Multiple select:
           <span className="mx-2 text-emerald-500 font-bold">
-                        {JSON.stringify(value2 || [])}
-                    </span>
+            {JSON.stringify(value2 || [])}
+          </span>
         </p>
 
         <DuiSelect
@@ -186,6 +193,6 @@ const SelectBoxes = () => {
       </DuiContainer>
     </DuiContainer>
   );
-};
+}
 
 export default SelectBoxes;

@@ -4,42 +4,51 @@
   "description": "UI components library for React",
   "author": "Grigory Bederdinov",
   "license": "ISC",
-  "type": "module",
   "source": "./src/components/index.tsx",
-  "module": "dist/index.js",
   "targets": {
     "module": {
-      "optimize": true
+      "distDir": "dist/",
+      "optimize": true,
+      "outputFormat": "esmodule",
+      "sourceMap": false
     }
   },
   "sideEffects": false,
   "scripts": {
     "serve": "rm -rf ./serve & parcel serve src/index.html --dist-dir ./serve --public-url /",
-    "build": "parcel build --no-source-maps"
+    "build": "parcel build",
+    "lint": "./node_modules/.bin/eslint ./src --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.6.0",
     "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.6.0",
-    "@mui/icons-material": "^5.6.0",
     "@parcel/packager-ts": "2.4.1",
     "@parcel/transformer-typescript-types": "2.4.1",
     "@types/node": "^17.0.23",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
     "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "jest": "^27.5.1",
     "parcel": "^2.4.1",
     "typescript": ">=3.0.0"
   },
   "peerDependencies": {
-    "react": "18.*",
-    "react-dom": "18.*",
-    "react-router": "6.*",
-    "react-router-dom": "6.*"
   }
 }

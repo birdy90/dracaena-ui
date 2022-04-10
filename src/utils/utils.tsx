@@ -8,9 +8,7 @@ function shuffleArray(arr: any[]): any[] {
 }
 
 function arrayClosest(array: any[], target: number) {
-  return array.reduce(function (acc, t) {
-    return Math.abs(t - target) < Math.abs(acc - target) ? t : acc;
-  });
+  return array.reduce((acc, t) => (Math.abs(t - target) < Math.abs(acc - target) ? t : acc));
 }
 
 const randomString = (length: number = 8): string => {
@@ -22,29 +20,30 @@ const randomString = (length: number = 8): string => {
   }
 
   return result;
-}
+};
 
 function throttle(func: Function, ms: number): Function {
   let isThrottled = false;
   let savedArgs: any;
   let savedThis: any;
 
-  function wrapper(this: unknown) {
+  function wrapper(this: unknown, ...args: any[]) {
     if (isThrottled) {
-      savedArgs = arguments;
+      savedArgs = args;
       savedThis = this;
       return;
     }
 
-    func.apply(this, arguments);
+    func.apply(this, savedArgs);
 
     isThrottled = true;
 
-    setTimeout(function() {
+    setTimeout(() => {
       isThrottled = false;
       if (savedArgs) {
         wrapper.apply(savedThis, savedArgs);
-        savedArgs = savedThis = null;
+        savedArgs = null;
+        savedThis = null;
       }
     }, ms);
   }
@@ -53,7 +52,7 @@ function throttle(func: Function, ms: number): Function {
 }
 
 const calculateScrollBarWidth = (): number => {
-  let body = document.body;
+  const { body } = document;
   body.style.overflow = 'hidden';
   let width = body.clientWidth;
   body.style.overflow = 'scroll';
@@ -61,7 +60,7 @@ const calculateScrollBarWidth = (): number => {
   if (!width) width = body.offsetWidth - body.clientWidth;
   body.style.overflow = '';
   return width;
-}
+};
 
 export {
   shuffleArray,
@@ -69,4 +68,4 @@ export {
   randomString,
   calculateScrollBarWidth,
   throttle,
-}
+};

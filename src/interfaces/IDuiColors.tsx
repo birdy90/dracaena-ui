@@ -1,13 +1,13 @@
 interface IAccent {
-    accent?: boolean,
+  accent?: boolean,
 }
 
 interface ISecondary {
-    secondary?: boolean,
+  secondary?: boolean,
 }
 
 interface IAlert {
-    alert?: boolean,
+  alert?: boolean,
 }
 
 type IDuiColors = IAccent & ISecondary & IAlert;

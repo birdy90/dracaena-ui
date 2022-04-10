@@ -1,10 +1,10 @@
-import DuiContainer from "../components/layout/DuiContainer";
-import {useState} from "react";
-import DuiButton from "../components/DuiButton";
-import DuiModal from "../components/modals/DuiModal";
-import DuiConfirm from "../components/modals/DuiConfirm";
+import { useState } from 'react';
+import DuiContainer from '../components/layout/DuiContainer';
+import DuiButton from '../components/DuiButton';
+import DuiModal from '../components/modals/DuiModal';
+import DuiConfirm from '../components/modals/DuiConfirm';
 
-const Modals = () => {
+function Modals() {
   const [isAnimatedVisible, setIsAnimatedVisible] = useState(false);
   const [isYesNoVisible, setIsYesNoVisible] = useState(false);
   const [yesNoValue, setYesNoValue] = useState(false);
@@ -12,7 +12,7 @@ const Modals = () => {
   const onYesNoSelect = (val: boolean) => {
     setYesNoValue(Boolean(val));
     setIsYesNoVisible(false);
-  }
+  };
 
   return (
     <DuiContainer centered className="flex flex-col gap-2">
@@ -34,8 +34,10 @@ const Modals = () => {
       </div>
 
       <p>
-        Confirm. Selected value: <span
-          className={ yesNoValue ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold' }
+        Confirm. Selected value:
+        {' '}
+        <span
+          className={yesNoValue ? 'text-emerald-500 font-bold' : 'text-red-500 font-bold'}
         >
           {yesNoValue ? 'yes' : 'no'}
         </span>
@@ -51,6 +53,6 @@ const Modals = () => {
       </div>
     </DuiContainer>
   );
-};
+}
 
 export default Modals;

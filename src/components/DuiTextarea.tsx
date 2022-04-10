@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {randomString} from "../utils/utils";
-import IDuiColors from "../interfaces/IDuiColors";
+import React, { useEffect, useState } from 'react';
+import { randomString } from '../utils/utils';
+import IDuiColors from '../interfaces/IDuiColors';
 
 type Props = {
   className?: string,
@@ -19,9 +19,9 @@ type Props = {
   onFocus?: Function,
   onBlur?: Function,
   onChange?: (val: string) => void,
-}
+};
 
-const DuiTextarea = (props: Props & IDuiColors) => {
+function DuiTextarea(props: Props & IDuiColors) {
   const inputElement = React.createRef<HTMLTextAreaElement>();
   const inputHash = randomString();
   const [value, setValue] = useState(props.value ?? '');
@@ -34,32 +34,32 @@ const DuiTextarea = (props: Props & IDuiColors) => {
     if (isFocused) return;
 
     setFocused(true);
-    props.onFocus && props.onFocus();
+    if (props.onFocus) {
+      props.onFocus();
+    }
 
     if (inputElement && inputElement.current) {
       inputElement.current.focus();
     }
-  }
+  };
 
   const onBlur = () => {
     setFocused(false);
-    props.onBlur && props.onBlur();
-  }
+    if (props.onBlur) {
+      props.onBlur();
+    }
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
     if (props.onChange) props.onChange(e.target.value);
-  }
+  };
 
-  const colorClasses = props.accent ? `
-        border-emerald-300
-    ` : props.secondary ? `
-        border-amber-300
-    ` : props.alert ? `
-        border-red-300
-    ` : `
-        border-stone-400
-    `;
+  let colorClasses = 'border-stone-400';
+
+  if (props.accent) colorClasses = 'border-emerald-300';
+  else if (props.secondary) colorClasses = 'border-amber-300';
+  else if (props.alert) colorClasses = 'border-red-300';
 
   const stackedClasses = props.stacked ? `
         first:rounded-t-[20px] last:rounded-b-[20px]
@@ -74,11 +74,11 @@ const DuiTextarea = (props: Props & IDuiColors) => {
             focus:outline-0
             focus-visible:outline-0
             resize-none
-            ${ props.disabled
-      ? 'text-stone-200 placeholder:text-stone-200'
-      : 'placeholder:text-stone-400'
-    }
-            ${ props.code ? 'font-mono' : '' }
+            ${props.disabled
+    ? 'text-stone-200 placeholder:text-stone-200'
+    : 'placeholder:text-stone-400'
+}
+            ${props.code ? 'font-mono' : ''}
         `,
     rows,
 
@@ -92,33 +92,35 @@ const DuiTextarea = (props: Props & IDuiColors) => {
   useEffect(() => {
     if (!inputElement.current) return;
 
-    inputElement.current.style.height = "0px";
-    const scrollHeight = inputElement.current.scrollHeight;
+    inputElement.current.style.height = '0px';
+    const { scrollHeight } = inputElement.current;
     inputElement.current.style.height = `min(${scrollHeight + 25}px, 75vh)`;
   }, [value]);
 
   return (
     <div className="flex flex-col gap-1">
-      { props.label ? <label htmlFor={`dui-textarea-${inputHash}`} className="text-sm cursor-pointer mr-auto">
-        { props.label }
-      </label> : null }
+      { props.label ? (
+        <label htmlFor={`dui-textarea-${inputHash}`} className="text-sm cursor-pointer mr-auto">
+          { props.label }
+        </label>
+      ) : null }
 
       <span
         className={`
             min-h-[40px] w-full
             border cursor-text transition-colors
-            ${ stackedClasses }
-            ${ isFocused ? colorClasses : 'border-stone-200' }
-            ${ props.disabled ? 'pointer-events-none' : '' }
+            ${stackedClasses}
+            ${isFocused ? colorClasses : 'border-stone-200'}
+            ${props.disabled ? 'pointer-events-none' : ''}
             relative overflow-hidden
             ${props.className}
         `}
         onClick={onFocus}
       >
-          <textarea ref={inputElement} id={`dui-textarea-${inputHash}`} {...inputProps} />
+        <textarea ref={inputElement} id={`dui-textarea-${inputHash}`} {...inputProps} />
       </span>
     </div>
   );
-};
+}
 
 export default DuiTextarea;
