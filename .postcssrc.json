@@ -1,8 +1,9 @@
-module.exports = {
-  "plugins": [
-    require('tailwindcss'),
-    require("cssnano")({
-      preset: 'default',
-    }),
-  ]
+{
+  "plugins": {
+    "postcss-import": {},
+    "tailwindcss": {},
+    "cssnano": {
+      "preset": "default"
+    }
+  }
 }

@@ -1,12 +1,13 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import IDuiColors from '../interfaces/IDuiColors';
 
-type DuiRadioValue = boolean | string | number | undefined;
-
 interface IDuiRadioOption {
   title: string,
-  value: DuiRadioValue,
+  value: boolean | string | number | undefined,
 }
+
+type DuiRadioValue = boolean | string | number | undefined;
+
 type DuiRadioOptionProps = {
   value: DuiRadioValue,
   disabled?: boolean,

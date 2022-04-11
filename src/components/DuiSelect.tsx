@@ -3,6 +3,7 @@ import React, { ComponentType, createRef, useState } from 'react';
 import DuiInput from './DuiInput';
 import useOnClickOutside from '../hooks/ClickOutside';
 import IDuiColors from '../interfaces/IDuiColors';
+import IDuiSelectOption from '../interfaces/IDuiSelectOption';
 
 type SelectProps = {
   value: IDuiSelectOption[],
@@ -17,12 +18,6 @@ type SelectProps = {
 
   optionComponent?: ComponentType<SelectOptionProps>,
 };
-
-interface IDuiSelectOption {
-  title: string;
-  value: any,
-  selected?: boolean,
-}
 
 type SelectOptionProps = {
   option: IDuiSelectOption,

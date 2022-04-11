@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { Close, KeyboardArrowDown, Menu } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import IDuiColors from '../interfaces/IDuiColors';
-
-interface IDuiLink {
-  title: string,
-  href: string,
-  target?: string,
-  links?: IDuiLink[],
-}
+import IDuiLink from '../interfaces/IDuiLink';
 
 type OptionProps = {
   className?: string,
@@ -56,9 +50,8 @@ function DuiMenu(props: Props & IDuiColors) {
 
     if (props.toggleable && !isMenuVisible) classes = 'hidden lg:inline-flex';
     else if (props.toggleable && isMenuVisible) {
-      classes = `
-      flex fixed flex-col items-center top-0 left-0 w-full h-full bg-white py-4 px-4 sm:px-8
-      lg:relative lg:flex-row lg:inline-flex z-20)`;
+      classes = `flex fixed flex-col items-center top-0 left-0 w-full h-full bg-white py-4 px-4 sm:px-8
+        lg:relative lg:flex-row lg:inline-flex z-30`;
     }
 
     return classes;

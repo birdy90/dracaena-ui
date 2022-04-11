@@ -14,10 +14,16 @@ function DuiSquareLoader(props: Props & IDuiColors) {
   const iterationList = [...Array(size)].map((t, i) => i);
   const hash = randomString();
 
+  const animations = {
+    scale: 'ripple-scale-animation',
+    flip: 'ripple-flip-animation',
+    fade: 'ripple-fade-animation',
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const animationClass = `ripple-${animation || 'scale'}-animation`;
+        const animationClass = animations[animation || 'scale'];
         const items = entry.target.querySelectorAll('*');
 
         if (entry.isIntersecting) {
