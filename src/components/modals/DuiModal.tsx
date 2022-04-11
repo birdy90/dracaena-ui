@@ -51,20 +51,23 @@ class DuiModal extends Component<DuiModalProps> {
 
   render() {
     if (this.props.isVisible && this.el) {
-      ReactDOM.createPortal((
-        <div
-          className="fixed top-0 left-0 h-full w-full bg-stone-600/50 flex items-center justify-center"
-          onClick={this.onBackgroundClick}
-        >
-          <DuiCard className={`
+      ReactDOM.createPortal(
+        (
+          <div
+            className="fixed top-0 left-0 h-full w-full bg-stone-600/50 flex items-center justify-center"
+            onClick={this.onBackgroundClick}
+          >
+            <DuiCard className={`
             absolute
             ${this.props.appearAnimation ? 'animate-card-appear' : ''}
             ${this.props.className}
           `}>
-            { this.props.children }
-          </DuiCard>
-        </div>
-      ), this.el);
+              { this.props.children }
+            </DuiCard>
+          </div>
+        ),
+        this.el,
+      );
     }
     return null;
   }
