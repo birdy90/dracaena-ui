@@ -1,13 +1,11 @@
 import React, { Component, PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
 import DuiCard from '../DuiCard';
-
-type FunctionParameterless = () => void;
-type FunctionBoolean = (b: boolean) => void;
+import { randomString } from '../../utils/utils';
 
 type Props = {
   className?: string,
-  onClose?: FunctionParameterless | FunctionBoolean,
+  onClose?: (b?: boolean) => void,
   appearAnimation?: boolean,
   isVisible?: boolean,
 };
@@ -17,7 +15,7 @@ type DuiModalProps = PropsWithChildren<Props>;
 class DuiModal extends Component<DuiModalProps> {
   static createPortalElement(): HTMLElement {
     const newElement = document.createElement('div');
-    newElement.className = 'portal-wrapper';
+    newElement.className = `portal-wrapper portal-${randomString()}`;
     return newElement;
   }
 
@@ -32,9 +30,11 @@ class DuiModal extends Component<DuiModalProps> {
   }
 
   onBackgroundClick(e: React.MouseEvent) {
+    if (!this.props.isVisible) return;
     if (e.target !== e.currentTarget) return;
-    // @ts-ignore
-    this.props.onClose();
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   }
 
   openPortal() {
@@ -51,11 +51,11 @@ class DuiModal extends Component<DuiModalProps> {
 
   render() {
     if (this.props.isVisible && this.el) {
-      ReactDOM.createPortal(
+      return ReactDOM.createPortal(
         (
           <div
             className="fixed top-0 left-0 h-full w-full bg-stone-600/50 flex items-center justify-center"
-            onClick={this.onBackgroundClick}
+            onClick={(e) => this.onBackgroundClick(e)}
           >
             <DuiCard className={`
             absolute

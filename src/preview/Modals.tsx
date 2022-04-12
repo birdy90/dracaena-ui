@@ -9,7 +9,7 @@ function Modals() {
   const [isYesNoVisible, setIsYesNoVisible] = useState(false);
   const [yesNoValue, setYesNoValue] = useState(false);
 
-  const onYesNoSelect = (val: boolean) => {
+  const onYesNoSelect = (val: boolean | undefined) => {
     setYesNoValue(Boolean(val));
     setIsYesNoVisible(false);
   };

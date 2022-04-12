@@ -35,9 +35,9 @@ function DuiInput(props: PropsWithChildren<Props> & IDuiColors) {
   const inputHash = randomString();
 
   const [value, setValue] = useState(props.value ?? '');
-  if (props.value !== undefined && props.value !== value) setValue(props.value || '');
-
   const [isFocused, setFocused] = useState(Boolean(props.isFocused));
+
+  if (props.value !== undefined && props.value !== value) setValue(props.value || '');
 
   const onFocus = () => {
     if (props.onFocus) {
@@ -87,8 +87,9 @@ function DuiInput(props: PropsWithChildren<Props> & IDuiColors) {
   else if (props.alert) colorClasses = 'border-red-300';
 
   let stackedClasses = 'rounded-[20px] px-4';
-  if (stackedVertical) stackedClasses = 'first:rounded-t-[20px] last:rounded-b-[20px] border-y border-white/20';
-  else if (stackedHorizontal) {
+  if (stackedVertical) {
+    stackedClasses = 'first:rounded-t-[20px] last:rounded-b-[20px] border-y border-white/20';
+  } else if (stackedHorizontal) {
     stackedClasses = `first:rounded-l-[20px] last:rounded-r-[20px]
     border-x border-white/20 px-2 first:pl-4 last:pr-4`;
   }
@@ -117,7 +118,7 @@ function DuiInput(props: PropsWithChildren<Props> & IDuiColors) {
                 ${props.readonly ? 'cursor-pointer' : 'cursor-text'}
                 ${stackedClasses}
                 ${props.borderless ? '' : 'border'}
-                ${props.stacked ? '' : 'px-0'}
+                ${props.borderless && !props.stacked ? 'px-0' : ''}
                 ${isFocused ? colorClasses : 'border-stone-200'}
                 ${props.disabled ? 'pointer-events-none' : ''}
                 ${props.className}

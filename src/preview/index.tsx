@@ -22,7 +22,7 @@ import Tables from './Tables';
 
 function Index() {
   return (
-    <>
+    <div className="py-4">
       <DuiContainer centered className="flex flex-col gap-2">
         <h1 className="dark:text-emerald-300">Dracaena UI Kit</h1>
       </DuiContainer>
@@ -52,7 +52,7 @@ function Index() {
         <Code />
         <Progress />
       </div>
-    </>
+    </div>
   );
 }
 

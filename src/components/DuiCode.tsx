@@ -7,9 +7,9 @@ type DuiCodeProps = {
 function DuiCode(props: PropsWithChildren<DuiCodeProps>) {
   return (
     <code className={`
-            bg-stone-100 rounded-xl
-            ${props.inline ? 'inline px-2 py-1' : ' block w-full px-4 py-2'}
-        `}
+        bg-stone-100 rounded-xl
+        ${props.inline ? 'inline px-2 py-1 mx-1' : ' block w-full px-4 py-2'}
+      `}
     >
       {
         props.inline

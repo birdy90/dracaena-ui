@@ -39,24 +39,22 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
   return (
     <div
       className={`
-                ${color} rounded-xl
-                border-2 border-white
-                absolute
-                ${props.value
-        ? 'px-1 -top-2 -right-1'
-        : 'h-4 w-4 -top-1 -right-0.5'
-      }
-                text-xs text-white
-            `}
+        ${color} rounded-xl
+        border-2 border-white
+        absolute
+        ${props.value ? 'px-1 -top-2 -right-1' : 'h-4 w-4 -top-1 -right-0.5'}
+        text-xs text-white
+      `}
+      style={{ minWidth: '20px' }}
     >
       { props.pulsating ? (
         <div
           id={`dui-badge-pulse-${hash}`}
           className={`
-                        ring-1 ${color} bg-transparent
-                        absolute top-0 left-0 w-full h-full
-                        rounded-xl
-                    `}
+              ring-1 ${color} bg-transparent
+              absolute top-0 left-0 w-full h-full
+              rounded-xl
+          `}
         />
       ) : null}
       { props.value && !Number.isNaN(props.value) && props.value > 99 ? '99+' : props.value }
