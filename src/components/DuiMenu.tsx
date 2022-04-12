@@ -88,10 +88,7 @@ function DuiMenu(props: Props & IDuiColors) {
                     `}
           >
             <DuiLink
-              className={`
-                                py-2 w-full lg:w-auto
-                                ${props.nested ? '' : 'text-center'}
-                            `}
+              className={`py-2 w-full lg:w-auto ${props.nested ? '' : 'text-center'}`}
               onClick={() => setMenuVisibility(false)}
               {...t}
               {...{
@@ -103,23 +100,22 @@ function DuiMenu(props: Props & IDuiColors) {
 
             { t.links ? (
               <>
-                <KeyboardArrowDown className={`
-                                group-hover:rotate-180 !transition-transform
-                                ${props.toggleable ? 'hidden lg:block' : ''}
-                            `}
-                />
+                <div className={`
+                  flex group-hover:rotate-180 transition-transform origin-center
+                  ${props.toggleable ? 'hidden lg:flex' : ''}
+                `}>
+                  <KeyboardArrowDown />
+                </div>
 
                 <DuiMenu
                   className={`
-                                    ${props.toggleable ? `
-                                        lg:absolute flex lg:hidden
-                                    ` : 'absolute hidden'}
-                                    top-full left-0 flex-col hidden group-hover:flex
-                                    bg-white py-2 px-4 rounded-xl shadow-xl border border-stone-100 z-30
-                                `}
-                  {...{ nested: true }}
-                  links={t.links}
+                    ${props.toggleable ? `lg:absolute flex lg:hidden` : 'absolute hidden'}
+                    top-full left-0 flex-col hidden group-hover:flex
+                    bg-white py-2 px-4 rounded-xl shadow-xl border border-stone-100 z-30
+                  `}
                   {...{
+                    links: t.links,
+                    nested: true,
                     accent: props.accent,
                     secondary: props.secondary,
                     alert: props.alert,

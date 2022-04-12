@@ -46,7 +46,7 @@ function DuiRadioOption(props: PropsWithChildren<DuiRadioOptionProps> & IDuiColo
     >
       <span className={`
                 flex items-center justify-center h-5 w-5 rounded-full
-                border-2
+                border-2 shrink-0
                 ${colors.border}
             `}
       >

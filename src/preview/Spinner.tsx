@@ -8,7 +8,7 @@ function Spinner() {
     <DuiContainer centered className="flex flex-col gap-2">
       <h2>Spinner</h2>
 
-      <div className="flex flex-wrap items-center gap-4 mt-4">
+      <div className="flex flex-wrap items-center gap-4">
         <DuiSvgSpinner />
         <DuiButton loading />
         <DuiButton accent loading>Hello world</DuiButton>
@@ -21,11 +21,11 @@ function Spinner() {
       <div className="flex gap-8">
         <DuiSquareLoader accent />
 
-        <DuiSquareLoader type="flip" secondary />
+        <DuiSquareLoader animation="flip" secondary />
 
-        <DuiSquareLoader type="fade" alert />
+        <DuiSquareLoader animation="fade" alert />
 
-        <DuiSquareLoader random type="scale" />
+        <DuiSquareLoader random animation="scale" />
       </div>
     </DuiContainer>
   );

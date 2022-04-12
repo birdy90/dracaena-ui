@@ -16,89 +16,93 @@ function Badges() {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-4 mt-4">
-        <h5>Buttons with badges</h5>
+      <div className="flex flex-col gap-2">
+        <p>Buttons with badges</p>
 
-        <DuiButton>
-          Hello
-          <DuiBadge />
-        </DuiButton>
-        <DuiButton>
-          Hello
-          <DuiBadge value="1" accent />
-        </DuiButton>
-        <DuiButton>
-          <Person />
-          <DuiBadge value="88" />
-        </DuiButton>
-        <DuiButton>
-          Hello
-          <DuiBadge value="120" grey />
-        </DuiButton>
-        <DuiButton>
-          Hello
-          <DuiBadge value="3" grey pulsating />
-        </DuiButton>
-        <DuiButton>
-          Hello
-          <DuiBadge value="120" pulsating />
-        </DuiButton>
-        <DuiButton>
-          Hello
-          <DuiBadge pulsating />
-        </DuiButton>
-      </div>
-
-      <div className="flex flex-wrap gap-4 mt-4">
-        <h5>Groups with badges</h5>
-
-        <DuiControlsGroup accent vertical="true">
-          <DuiButton>Create</DuiButton>
-          <DuiButton>Read</DuiButton>
+        <div className="flex flex-wrap gap-4">
           <DuiButton>
-            Update
-            <DuiBadge />
-          </DuiButton>
-          <DuiButton>Delete</DuiButton>
-        </DuiControlsGroup>
-
-        <DuiControlsGroup vertical="true">
-          <DuiButton>
-            Create
+            Hello
             <DuiBadge />
           </DuiButton>
           <DuiButton>
-            Read
-            <DuiBadge value={23} />
+            Hello
+            <DuiBadge value="1" accent />
           </DuiButton>
           <DuiButton>
-            Update
+            <Person />
+            <DuiBadge value="88" />
+          </DuiButton>
+          <DuiButton>
+            Hello
+            <DuiBadge value="120" grey />
+          </DuiButton>
+          <DuiButton>
+            Hello
+            <DuiBadge value="3" grey pulsating />
+          </DuiButton>
+          <DuiButton>
+            Hello
+            <DuiBadge value="120" pulsating />
+          </DuiButton>
+          <DuiButton>
+            Hello
             <DuiBadge pulsating />
           </DuiButton>
-          <DuiButton>
-            Delete
-            <DuiBadge value={23} pulsating />
-          </DuiButton>
-        </DuiControlsGroup>
+        </div>
+      </div>
 
-        <DuiControlsGroup alert vertical="true">
-          <DuiButton>
-            Create
-            <DuiBadge grey />
-          </DuiButton>
-          <DuiButton>
-            Read
-            <DuiBadge grey value={23} />
-          </DuiButton>
-          <DuiButton>
-            Update
-            <DuiBadge secondary pulsating />
-          </DuiButton>
-          <DuiButton>
-            Delete
-            <DuiBadge secondary value={23} pulsating />
-          </DuiButton>
-        </DuiControlsGroup>
+      <div className="flex flex-col gap-2">
+        <p>Groups with badges</p>
+
+        <div className="flex flex-wrap gap-4">
+          <DuiControlsGroup accent vertical="true">
+            <DuiButton>Create</DuiButton>
+            <DuiButton>Read</DuiButton>
+            <DuiButton>
+              Update
+              <DuiBadge />
+            </DuiButton>
+            <DuiButton>Delete</DuiButton>
+          </DuiControlsGroup>
+
+          <DuiControlsGroup vertical="true">
+            <DuiButton>
+              Create
+              <DuiBadge />
+            </DuiButton>
+            <DuiButton>
+              Read
+              <DuiBadge value={23} />
+            </DuiButton>
+            <DuiButton>
+              Update
+              <DuiBadge pulsating />
+            </DuiButton>
+            <DuiButton>
+              Delete
+              <DuiBadge value={23} pulsating />
+            </DuiButton>
+          </DuiControlsGroup>
+
+          <DuiControlsGroup alert vertical="true">
+            <DuiButton>
+              Create
+              <DuiBadge grey />
+            </DuiButton>
+            <DuiButton>
+              Read
+              <DuiBadge grey value={23} />
+            </DuiButton>
+            <DuiButton>
+              Update
+              <DuiBadge secondary pulsating />
+            </DuiButton>
+            <DuiButton>
+              Delete
+              <DuiBadge secondary value={23} pulsating />
+            </DuiButton>
+          </DuiControlsGroup>
+        </div>
       </div>
     </DuiContainer>
   );

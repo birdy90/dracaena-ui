@@ -21,24 +21,24 @@ function Buttons() {
     <DuiContainer centered className="flex flex-col gap-2">
       <h2>Buttons</h2>
 
-      <div className="flex gap-4 mt-4">
-        <h5>Normal</h5>
+      <p>Normal</p>
+      <div className="flex flex-wrap gap-2">
         <DuiButton accent>Just accent</DuiButton>
         <DuiButton secondary>This is secondary</DuiButton>
         <DuiButton alert>Alert</DuiButton>
         <DuiButton>Common</DuiButton>
       </div>
 
-      <div className="flex gap-4 mt-4">
-        <h5>Icon</h5>
+      <p>Icon</p>
+      <div className="flex flex-wrap gap-2">
         <DuiButton accent><Home /></DuiButton>
         <DuiButton secondary><BookmarkOutlined /></DuiButton>
         <DuiButton alert><Delete /></DuiButton>
         <DuiButton><Mail /></DuiButton>
       </div>
 
-      <div className="flex gap-4 mt-4">
-        <h5>Combined</h5>
+      <p>Combined</p>
+      <div className="flex flex-wrap gap-2">
         <DuiButton accent>
           <Handshake />
           {' '}
@@ -64,96 +64,97 @@ function Buttons() {
         </DuiButton>
       </div>
 
-      <div className="flex gap-4 mt-4">
-        <h5>Disabled</h5>
+      <p>Disabled</p>
+      <div className="flex flex-wrap gap-2">
         <DuiButton disabled>Hello!</DuiButton>
       </div>
 
       <h2>Button groups</h2>
 
-      <div className="flex flex-wrap gap-4 mt-4">
-        <h5>Grouped</h5>
+      <p>Grouped</p>
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-4">
+          <DuiControlsGroup accent>
+            <DuiButton>
+              Let
+              <People />
+            </DuiButton>
+            <DuiButton><Handshake /></DuiButton>
+            <DuiButton>
+              other
+              <People />
+            </DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup accent>
-          <DuiButton>
-            Let
-            <People />
-          </DuiButton>
-          <DuiButton><Handshake /></DuiButton>
-          <DuiButton>
-            other
-            <People />
-          </DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup alert>
+            <DuiButton>AL</DuiButton>
+            <DuiButton>ER</DuiButton>
+            <DuiButton>T!!</DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup alert>
-          <DuiButton>AL</DuiButton>
-          <DuiButton>ER</DuiButton>
-          <DuiButton>T!!</DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup>
+            <DuiButton><People /></DuiButton>
+            <DuiButton><Handshake /></DuiButton>
+            <DuiButton><Person /></DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup>
-          <DuiButton><People /></DuiButton>
-          <DuiButton><Handshake /></DuiButton>
-          <DuiButton><Person /></DuiButton>
-        </DuiControlsGroup>
-
-        <DuiControlsGroup>
-          <DuiButton accent>Save</DuiButton>
-          <DuiButton alert>Delete</DuiButton>
-          <DuiButton disabled>Delete</DuiButton>
-          <DuiButton disabled>Cancel</DuiButton>
-          <DuiButton>Cancel</DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup>
+            <DuiButton accent>Save</DuiButton>
+            <DuiButton alert>Delete</DuiButton>
+            <DuiButton disabled>Delete</DuiButton>
+            <DuiButton disabled>Cancel</DuiButton>
+            <DuiButton>Cancel</DuiButton>
+          </DuiControlsGroup>
+        </div>
       </div>
 
-      <div className="flex flex-wrap gap-4 mt-4">
-        <h5>Grouped vertical</h5>
+      <p>Grouped vertical</p>
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-4">
+          <DuiControlsGroup vertical>
+            <DuiButton><People /></DuiButton>
+            <DuiButton><Handshake /></DuiButton>
+            <DuiButton><Person /></DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup vertical>
-          <DuiButton><People /></DuiButton>
-          <DuiButton><Handshake /></DuiButton>
-          <DuiButton><Person /></DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup secondary vertical>
+            <DuiButton>
+              Some
+              <People />
+            </DuiButton>
+            <DuiButton alert><Handshake /></DuiButton>
+            <DuiButton>
+              <Person />
+              {' '}
+              without asking
+            </DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup secondary vertical>
-          <DuiButton>
-            Some
-            <People />
-          </DuiButton>
-          <DuiButton alert><Handshake /></DuiButton>
-          <DuiButton>
-            <Person />
-            {' '}
-            without asking
-          </DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup alert vertical="true">
+            <DuiButton>Create</DuiButton>
+            <DuiButton>Read</DuiButton>
+            <DuiButton>Update</DuiButton>
+            <DuiButton>Delete</DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup alert vertical="true">
-          <DuiButton>Create</DuiButton>
-          <DuiButton>Read</DuiButton>
-          <DuiButton>Update</DuiButton>
-          <DuiButton>Delete</DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup vertical="true">
+            <DuiButton>Create</DuiButton>
+            <DuiButton>Read</DuiButton>
+            <DuiButton disabled>Update</DuiButton>
+            <DuiButton>Delete</DuiButton>
+          </DuiControlsGroup>
 
-        <DuiControlsGroup vertical="true">
-          <DuiButton>Create</DuiButton>
-          <DuiButton>Read</DuiButton>
-          <DuiButton disabled>Update</DuiButton>
-          <DuiButton>Delete</DuiButton>
-        </DuiControlsGroup>
-
-        <DuiControlsGroup disabled vertical="true">
-          <DuiButton>Create</DuiButton>
-          <DuiButton>Read</DuiButton>
-          <DuiButton>Update</DuiButton>
-          <DuiButton>Delete</DuiButton>
-        </DuiControlsGroup>
+          <DuiControlsGroup disabled vertical="true">
+            <DuiButton>Create</DuiButton>
+            <DuiButton>Read</DuiButton>
+            <DuiButton>Update</DuiButton>
+            <DuiButton>Delete</DuiButton>
+          </DuiControlsGroup>
+        </div>
       </div>
 
-      <div className="flex flex-wrap gap-4 mt-4">
-        <h5>Group with invalid child</h5>
-
+      <p>Group with invalid child (only buttons and text inputs allowed)</p>
+      <div className="flex flex-col gap-2">
         <DuiControlsGroup>
           <DuiButton>Hello</DuiButton>
           <DuiControlsGroup>

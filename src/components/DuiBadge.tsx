@@ -40,12 +40,12 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
     <div
       className={`
         ${color} rounded-xl
-        border-2 border-white
+        border-2 border-white shrink-0
         absolute
         ${props.value ? 'px-1 -top-2 -right-1' : 'h-4 w-4 -top-1 -right-0.5'}
         text-xs text-white
       `}
-      style={{ minWidth: '20px' }}
+      style={{ minWidth: props.value ? '20px' : '' }}
     >
       { props.pulsating ? (
         <div

@@ -53,7 +53,7 @@ function DuiCheckBox(props: PropsWithChildren<Props> & IDuiColors) {
     ${props.disabled ? 'text-stone-200 pointer-events-none' : ''}`;
 
   const boxClasses = props.box ? `!w-5 !h-5 rounded-md ${value ? colors.yes : '!bg-white'}` : 'rounded-full w-10';
-  const switchClasses = `flex items-center justify-center relative
+  const switchClasses = `flex items-center justify-center relative shrink-0
     ${props.thin ? 'h-1' : 'h-7 border-2'} ${colors.border}
     ${value || props.thin ? colors.yes : colors.no} ${boxClasses}
   `;

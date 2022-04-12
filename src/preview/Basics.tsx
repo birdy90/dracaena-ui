@@ -17,24 +17,15 @@ function Basics() {
   return (
     <DuiContainer centered className="flex flex-col gap-2">
       <div>
-        <h2>1. Colors</h2>
+        <h2>Colors</h2>
 
         <div className="flex flex-wrap gap-8">
           {colorsData.map((group) => (
-            <div
-              className="flex flex-col gap-2"
-              key={group.title}
-            >
-              <h5>{ group.title }</h5>
+            <div className="flex flex-col gap-2" key={group.title}>
+              <p>{ group.title }</p>
               <div className="flex gap-4">
                 {group.colors.map((t) => (
-                  <div
-                    className={`
-                                            flex items-center justify-center
-                                            w-12 h-8 rounded-xl ${t}
-                                        `}
-                    key={t}
-                  >
+                  <div className={`flex items-center justify-center w-12 h-8 rounded-xl ${t}`} key={t}>
                     { t.split('-').pop() }
                   </div>
                 ))}
@@ -45,9 +36,9 @@ function Basics() {
       </div>
 
       <div>
-        <h2>2. Typography</h2>
+        <h2>Typography</h2>
 
-        <div className="grid grid-cols-4 text-center">
+        <div className="flex flex-wrap gap-4 text-center">
           <div>
             <h1>H1 title</h1>
             <h2>H2 title</h2>
@@ -59,6 +50,7 @@ function Basics() {
             <p><i>Italic paragraph</i></p>
             <p><code>Monospace one</code></p>
           </div>
+
           <div className="text-emerald-500">
             <h1>H1 title</h1>
             <h2>H2 title</h2>
@@ -70,6 +62,7 @@ function Basics() {
             <p><i>Italic paragraph</i></p>
             <p><code>Monospace one</code></p>
           </div>
+
           <div className="text-amber-500">
             <h1>H1 title</h1>
             <h2>H2 title</h2>
@@ -81,6 +74,7 @@ function Basics() {
             <p><i>Italic paragraph</i></p>
             <p><code>Monospace one</code></p>
           </div>
+
           <div className="text-red-500">
             <h1>H1 title</h1>
             <h2>H2 title</h2>
