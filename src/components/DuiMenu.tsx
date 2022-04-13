@@ -100,16 +100,18 @@ function DuiMenu(props: Props & IDuiColors) {
 
             { t.links ? (
               <>
-                <div className={`
-                  flex group-hover:rotate-180 transition-transform origin-center
-                  ${props.toggleable ? 'hidden lg:flex' : ''}
-                `}>
+                <div
+                  className={`
+                    flex group-hover:rotate-180 transition-transform origin-center
+                    ${props.toggleable ? 'hidden lg:flex' : ''}
+                  `}
+                >
                   <KeyboardArrowDown />
                 </div>
 
                 <DuiMenu
                   className={`
-                    ${props.toggleable ? `lg:absolute flex lg:hidden` : 'absolute hidden'}
+                    ${props.toggleable ? 'lg:absolute flex lg:hidden' : 'absolute hidden'}
                     top-full left-0 flex-col hidden group-hover:flex
                     bg-white py-2 px-4 rounded-xl shadow-xl border border-stone-100 z-30
                   `}
