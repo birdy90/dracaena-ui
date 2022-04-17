@@ -1,4 +1,4 @@
-import React, { Component, PropsWithChildren } from 'react';
+import React, {PropsWithChildren, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import DuiCard from '../DuiCard';
 import { randomString } from '../../utils/utils';
@@ -12,65 +12,64 @@ type Props = {
 
 type DuiModalProps = PropsWithChildren<Props>;
 
-class DuiModal extends Component<DuiModalProps> {
-  static createPortalElement(): HTMLElement {
+const DuiModal = (props: DuiModalProps) => {
+  const [el, setEl] = useState<HTMLElement | undefined>(undefined)
+
+  const createPortalElement = (): HTMLElement => {
     const newElement = document.createElement('div');
     newElement.className = `portal-wrapper portal-${randomString()}`;
     return newElement;
   }
 
-  el: HTMLElement | undefined = undefined;
-
-  componentDidMount() {
-    this.openPortal();
-  }
-
-  componentWillUnmount() {
-    this.closePortal();
-  }
-
-  onBackgroundClick(e: React.MouseEvent) {
-    if (!this.props.isVisible) return;
+  const onBackgroundClick = (e: React.MouseEvent) => {
+    if (!props.isVisible) return;
     if (e.target !== e.currentTarget) return;
-    if (this.props.onClose) {
-      this.props.onClose();
+    if (props.onClose) {
+      props.onClose();
     }
   }
 
-  openPortal() {
-    if (this.el) return;
-    this.el = DuiModal.createPortalElement();
-    document.body.appendChild(this.el);
+  const openPortal = () => {
+    if (el) return;
+    const newEl = createPortalElement();
+    setEl(newEl);
+    document.body.appendChild(newEl);
   }
 
-  closePortal() {
-    if (this.el) {
-      document.body.removeChild(this.el);
+  const closePortal = () => {
+    if (el) {
+      document.body.removeChild(el);
     }
   }
 
-  render() {
-    if (this.props.isVisible && this.el) {
-      return ReactDOM.createPortal(
-        (
-          <div
-            className="fixed top-0 left-0 h-full w-full bg-stone-600/50 flex items-center justify-center"
-            onClick={(e) => this.onBackgroundClick(e)}
-          >
-            <DuiCard className={`
-            absolute
-            ${this.props.appearAnimation ? 'animate-card-appear' : ''}
-            ${this.props.className}
-          `}>
-              { this.props.children }
-            </DuiCard>
-          </div>
-        ),
-        this.el,
-      );
+
+  useEffect(() => {
+    openPortal();
+    return () => {
+      closePortal();
     }
-    return null;
+  }, []);
+
+  const portalContents = (
+    <div
+      className="fixed top-0 left-0 h-full w-full bg-stone-600/50 flex items-center justify-center"
+      onClick={onBackgroundClick}
+    >
+      <DuiCard className={`
+        absolute
+        ${props.appearAnimation ? 'animate-card-appear' : ''}
+        ${props.className}
+      `}>
+        { props.children }
+      </DuiCard>
+    </div>
+  );
+
+  if (props.isVisible && el) {
+    return <>{ ReactDOM.createPortal(portalContents, el) }</>;
   }
+
+  return null;
 }
 
 export default DuiModal;

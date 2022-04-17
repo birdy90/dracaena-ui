@@ -11,10 +11,10 @@ type DuiBadgeProps = {
 function DuiBadge(props: DuiBadgeProps & IDuiColors) {
   const hash = randomString();
 
-  let color = 'bg-red-500 ring-red-500';
-  if (props.accent) color = 'bg-emerald-500 ring-emerald-500';
-  else if (props.secondary) color = 'bg-amber-500 ring-amber-500';
-  else if (props.grey) color = 'bg-stone-400 ring-stone-400';
+  let color = {bg: 'bg-red-500', ring: 'ring-red-500'};
+  if (props.accent) color = {bg: 'bg-emerald-500', ring: 'ring-emerald-500'};
+  else if (props.secondary) color = {bg: 'bg-amber-500', ring: 'ring-amber-500'};
+  else if (props.grey) color = {bg: 'bg-stone-400', ring: 'ring-stone-400'};
 
   useEffect(() => {
     if (props.pulsating) {
@@ -39,7 +39,7 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
   return (
     <div
       className={`
-        ${color} rounded-xl
+        ${color.bg} rounded-xl
         border-2 border-white shrink-0
         absolute
         ${props.value ? 'px-1 -top-2 -right-1' : 'h-4 w-4 -top-1 -right-0.5'}
@@ -51,7 +51,7 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
         <div
           id={`dui-badge-pulse-${hash}`}
           className={`
-              ring-1 ${color} bg-transparent
+              ring-1 ${color.ring} bg-transparent
               absolute top-0 left-0 w-full h-full
               rounded-xl
           `}
