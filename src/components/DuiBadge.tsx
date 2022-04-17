@@ -11,10 +11,10 @@ type DuiBadgeProps = {
 function DuiBadge(props: DuiBadgeProps & IDuiColors) {
   const hash = randomString();
 
-  let color = {bg: 'bg-red-500', ring: 'ring-red-500'};
-  if (props.accent) color = {bg: 'bg-emerald-500', ring: 'ring-emerald-500'};
-  else if (props.secondary) color = {bg: 'bg-amber-500', ring: 'ring-amber-500'};
-  else if (props.grey) color = {bg: 'bg-stone-400', ring: 'ring-stone-400'};
+  let color = { bg: 'bg-red-500', ring: 'ring-red-500' };
+  if (props.accent) color = { bg: 'bg-emerald-500', ring: 'ring-emerald-500' };
+  else if (props.secondary) color = { bg: 'bg-amber-500', ring: 'ring-amber-500' };
+  else if (props.grey) color = { bg: 'bg-stone-400', ring: 'ring-stone-400' };
 
   useEffect(() => {
     if (props.pulsating) {
