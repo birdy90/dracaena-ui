@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Close, KeyboardArrowDown, Menu } from '@mui/icons-material';
-import { NavLink } from 'react-router-dom';
 import IDuiColors from '../interfaces/IDuiColors';
 import IDuiLink from '../interfaces/IDuiLink';
 
@@ -10,26 +9,17 @@ type OptionProps = {
 };
 
 function DuiLink(props: OptionProps & IDuiLink & IDuiColors) {
-  let colors = { common: 'text-emerald-500', hover: 'hover:text-emerald-500' };
-  if (props.secondary) colors = { common: 'text-amber-500', hover: 'hover:text-amber-500' };
-  if (props.alert) colors = { common: 'text-red-500', hover: 'hover:text-red-500' };
-
-  const navLinkClasses = (e: { isActive: boolean }) => {
-    const classes = [colors.hover, props.className, 'whitespace-nowrap'];
-    if (e.isActive) {
-      classes.push(colors.common);
-    }
-    return classes.join(' ');
-  };
+  // let colors = { common: 'text-emerald-500', hover: 'hover:text-emerald-500' };
+  // if (props.secondary) colors = { common: 'text-amber-500', hover: 'hover:text-amber-500' };
+  // if (props.alert) colors = { common: 'text-red-500', hover: 'hover:text-red-500' };
 
   return (
-    <NavLink
-      className={navLinkClasses}
-      to={props.href}
+    <a
+      href={props.href}
       onClick={props.onClick}
     >
       { props.title }
-    </NavLink>
+    </a>
   );
 }
 

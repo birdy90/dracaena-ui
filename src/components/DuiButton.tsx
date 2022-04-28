@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import React, { PropsWithChildren, ReactNode } from 'react';
 import DuiSvgSpinner from './loaders/DuiSvgSpinner';
 import IDuiColors from '../interfaces/IDuiColors';
@@ -54,7 +53,7 @@ function DuiButton(props: PropsWithChildren<Props> & IDuiColors) {
     if (props.target) {
       return <a href={props.link} target={props.target} rel="noreferrer">{button}</a>;
     }
-    return <Link to={props.link}>{button}</Link>;
+    return null;
   };
 
   const buttonItem = (
