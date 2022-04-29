@@ -1,5 +1,5 @@
 import { ExpandLess } from '@mui/icons-material';
-import React from 'react';
+import React, { useRef } from 'react';
 
 type DuiAccordionItemProps = {
   isOpened?: boolean,
@@ -10,6 +10,7 @@ type DuiAccordionItemProps = {
 };
 
 function DuiAccordionItem(props: DuiAccordionItemProps) {
+  const ref = useRef<HTMLElement>(null);
   const toggleOpened = () => {
     if (props.toggleOpened) {
       props.toggleOpened();
@@ -21,6 +22,10 @@ function DuiAccordionItem(props: DuiAccordionItemProps) {
     bg-stone-100 select-none cursor-pointer
   `;
 
+  if (ref.current) {
+    ref.current.style.borderRadius = 'inherit';
+  }
+
   return (
     <div
       className="
@@ -30,8 +35,8 @@ function DuiAccordionItem(props: DuiAccordionItemProps) {
       "
     >
       <header
+        ref={ref}
         className={headerClasses}
-        style={{ borderRadius: 'inherit' }}
         onClick={() => toggleOpened()}
       >
         <span>{ props.title }</span>

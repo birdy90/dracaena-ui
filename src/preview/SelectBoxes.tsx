@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DuiSelect, { IDuiSelectOption, SelectOptionProps } from '../components/DuiSelect';
 import DuiContainer from '../components/layout/DuiContainer';
 
@@ -9,10 +9,13 @@ type PotterData = {
   name: string,
 };
 
+type HouseStylesResponse = { background: string, color: string };
+
 function CustomSelectOption(props: SelectOptionProps) {
+  const ref = useRef<HTMLDivElement>(null);
   const item = props.option.value;
 
-  const houseStyles = (letter: string): {} => {
+  function houseStyles(letter: string): HouseStylesResponse {
     switch (letter) {
       case 'G':
         return {
@@ -40,7 +43,15 @@ function CustomSelectOption(props: SelectOptionProps) {
           color: '#777',
         };
     }
-  };
+  }
+
+  useEffect(() => {
+    const styles = houseStyles(item.house[0]);
+    if (ref.current) {
+      ref.current.style.background = styles.background;
+      ref.current.style.color = styles.color;
+    }
+  }, [props.option.value.house]);
 
   return (
     <div
@@ -54,12 +65,12 @@ function CustomSelectOption(props: SelectOptionProps) {
     >
       <div className="flex items-center gap-4">
         <div
+          ref={ref}
           className="
             flex items-center justify-center shrink-0
             text-4xl font-bold
             rounded-full w-14 h-14
           "
-          style={houseStyles(item.house[0])}
         >
           { item.house[0] }
         </div>
