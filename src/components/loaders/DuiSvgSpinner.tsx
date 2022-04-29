@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { randomString } from '../../utils/utils';
+import React, {useEffect, useRef} from 'react';
 
 type DuiSvgSpinnerProps = {
   className?: string,
@@ -14,7 +13,7 @@ function DuiSvgSpinner(props: DuiSvgSpinnerProps) {
   const half = size / 2;
   const innerHalf = innerSize / 2;
 
-  const hash = randomString();
+  const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -28,15 +27,14 @@ function DuiSvgSpinner(props: DuiSvgSpinnerProps) {
         }
       });
     });
-    const observeTarget = document.querySelector(`#dui-spinner-${hash}`);
-    if (observeTarget) {
-      observer.observe(observeTarget);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
   });
 
   return (
     <svg
-      id={`dui-spinner-${hash}`}
+      ref={ref}
       width="24"
       height="24"
       viewBox={`0,0,${size},${size}`}

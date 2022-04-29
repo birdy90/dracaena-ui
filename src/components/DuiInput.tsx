@@ -1,6 +1,5 @@
-import React, { MouseEventHandler, PropsWithChildren, useState } from 'react';
+import React, {MouseEventHandler, PropsWithChildren, useId, useState} from 'react';
 import { Clear } from '@mui/icons-material';
-import { randomString } from '../utils/utils';
 import IDuiColors from '../interfaces/IDuiColors';
 
 type Props = {
@@ -32,7 +31,7 @@ function DuiInput(props: PropsWithChildren<Props> & IDuiColors) {
   const inputElement = React.createRef<HTMLInputElement>();
   const stackedVertical = props.stacked && props.vertical;
   const stackedHorizontal = props.stacked && !props.vertical;
-  const inputHash = randomString();
+  const inputHash = useId();
 
   const [value, setValue] = useState(props.value ?? '');
   const [isFocused, setFocused] = useState(Boolean(props.isFocused));
@@ -125,7 +124,7 @@ function DuiInput(props: PropsWithChildren<Props> & IDuiColors) {
             `}
       onClick={onClick}
     >
-      <input id={`dui-input-${inputHash}`} {...inputProps} />
+      <input id={inputHash} {...inputProps} />
 
       {props.clearable && !props.readonly && value
         ? <Clear onClick={onClear} />
@@ -151,10 +150,10 @@ function DuiInput(props: PropsWithChildren<Props> & IDuiColors) {
 
   return props.label || props.sublabel ? (
     <div className="flex flex-col gap-1">
-      <label htmlFor={`dui-input-${inputHash}`} className="text-sm cursor-pointer block mr-auto">
+      <label htmlFor={inputHash} className="text-sm cursor-pointer block mr-auto">
         { props.label }
       </label>
-      <label htmlFor={`dui-input-${inputHash}`} className="text-xs text-stone-400 cursor-pointer block mr-auto">
+      <label htmlFor={inputHash} className="text-xs text-stone-400 cursor-pointer block mr-auto">
         { props.sublabel }
       </label>
 

@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { randomString } from '../utils/utils';
+import React, {useEffect, useRef} from 'react';
 import IDuiColors from '../interfaces/IDuiColors';
 
 type DuiBadgeProps = {
@@ -9,7 +8,7 @@ type DuiBadgeProps = {
 };
 
 function DuiBadge(props: DuiBadgeProps & IDuiColors) {
-  const hash = randomString();
+  const ref = useRef(null);
 
   let color = { bg: 'bg-red-500', ring: 'ring-red-500' };
   if (props.accent) color = { bg: 'bg-emerald-500', ring: 'ring-emerald-500' };
@@ -29,9 +28,8 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
           }
         });
       });
-      const observeTarget = document.querySelector(`#dui-badge-pulse-${hash}`);
-      if (observeTarget) {
-        observer.observe(observeTarget);
+      if (ref.current) {
+        observer.observe(ref.current);
       }
     }
   });
@@ -49,7 +47,7 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
     >
       { props.pulsating ? (
         <div
-          id={`dui-badge-pulse-${hash}`}
+          ref={ref}
           className={`
               ring-1 ${color.ring} bg-transparent
               absolute top-0 left-0 w-full h-full

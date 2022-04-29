@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { randomString } from '../utils/utils';
+import React, {useEffect, useId, useState} from 'react';
 import IDuiColors from '../interfaces/IDuiColors';
 
 type Props = {
@@ -23,7 +22,7 @@ type Props = {
 
 function DuiTextarea(props: Props & IDuiColors) {
   const inputElement = React.createRef<HTMLTextAreaElement>();
-  const inputHash = randomString();
+  const inputHash = useId();
   const [value, setValue] = useState(props.value ?? '');
   const [isFocused, setFocused] = useState(Boolean(props.isFocused));
 
@@ -100,7 +99,7 @@ function DuiTextarea(props: Props & IDuiColors) {
   return (
     <div className="flex flex-col gap-1">
       { props.label ? (
-        <label htmlFor={`dui-textarea-${inputHash}`} className="text-sm cursor-pointer mr-auto">
+        <label htmlFor={inputHash} className="text-sm cursor-pointer mr-auto">
           { props.label }
         </label>
       ) : null }
@@ -117,7 +116,7 @@ function DuiTextarea(props: Props & IDuiColors) {
         `}
         onClick={onFocus}
       >
-        <textarea ref={inputElement} id={`dui-textarea-${inputHash}`} {...inputProps} />
+        <textarea ref={inputElement} id={inputHash} {...inputProps} />
       </span>
     </div>
   );

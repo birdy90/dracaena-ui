@@ -1,7 +1,6 @@
 import '../../animations/ripple.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import IDuiColors from '../../interfaces/IDuiColors';
-import { randomString } from '../../utils/utils';
 
 type Props = {
   animation?: 'scale' | 'flip' | 'fade',
@@ -12,7 +11,7 @@ function DuiSquareLoader(props: Props & IDuiColors) {
   const { accent, secondary, random, animation, alert } = props;
   const size = random ? 4 : 3;
   const iterationList = [...Array(size)].map((t, i) => i);
-  const hash = randomString();
+  const ref = useRef(null);
 
   const animations = {
     scale: 'ripple-scale-animation',
@@ -37,9 +36,8 @@ function DuiSquareLoader(props: Props & IDuiColors) {
         }
       });
     });
-    const observeTarget = document.querySelector(`#dui-loader-${hash}`);
-    if (observeTarget) {
-      observer.observe(observeTarget);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
   });
 
@@ -61,7 +59,7 @@ function DuiSquareLoader(props: Props & IDuiColors) {
   });
 
   return (
-    <div id={`dui-loader-${hash}`} className="w-10 h-10 grid shrink-0" style={gridStyles}>
+    <div ref={ref} className="w-10 h-10 grid shrink-0" style={gridStyles}>
       { iterationList.map((i) => iterationList.map((j) => (
         <div
           className={cellClasses}
