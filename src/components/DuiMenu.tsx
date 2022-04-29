@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, { useState } from 'react';
 import { Close, KeyboardArrowDown, Menu } from '@mui/icons-material';
 import IDuiColors from '../interfaces/IDuiColors';
 import IDuiLink from '../interfaces/IDuiLink';
