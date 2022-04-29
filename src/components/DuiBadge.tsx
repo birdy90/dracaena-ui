@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import IDuiColors from '../interfaces/IDuiColors';
 
 type DuiBadgeProps = {
@@ -37,13 +37,10 @@ function DuiBadge(props: DuiBadgeProps & IDuiColors) {
   return (
     <div
       className={`
-        ${color.bg} rounded-xl
-        border-2 border-white shrink-0
-        absolute
+        ${color.bg} rounded-xl border-2 border-white shrink-0 absolute text-xs text-white
         ${props.value ? 'px-1 -top-2 -right-1' : 'h-4 w-4 -top-1 -right-0.5'}
-        text-xs text-white
+        ${props.value ? 'min-w-[20px]' : ''}
       `}
-      style={{ minWidth: props.value ? '20px' : '' }}
     >
       { props.pulsating ? (
         <div

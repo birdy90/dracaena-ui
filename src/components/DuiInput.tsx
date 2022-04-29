@@ -1,4 +1,4 @@
-import React, {MouseEventHandler, PropsWithChildren, useId, useState} from 'react';
+import React, { MouseEventHandler, PropsWithChildren, useId, useState } from 'react';
 import { Clear } from '@mui/icons-material';
 import IDuiColors from '../interfaces/IDuiColors';
 

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {Component, useState} from 'react';
 import { Close, KeyboardArrowDown, Menu } from '@mui/icons-material';
 import IDuiColors from '../interfaces/IDuiColors';
 import IDuiLink from '../interfaces/IDuiLink';
 
 type OptionProps = {
+  as?: React.ElementType,
   className?: string,
   onClick?: () => void,
 };
@@ -13,19 +14,22 @@ function DuiLink(props: OptionProps & IDuiLink & IDuiColors) {
   // if (props.secondary) colors = { common: 'text-amber-500', hover: 'hover:text-amber-500' };
   // if (props.alert) colors = { common: 'text-red-500', hover: 'hover:text-red-500' };
 
+  const Component = props.as ?? 'a';
+
   return (
-    <a
+    <Component
       href={props.href}
       onClick={props.onClick}
     >
       { props.title }
-    </a>
+    </Component>
   );
 }
 
 type Props = {
   className?: string;
   nested?: boolean;
+  as?: React.ElementType,
 
   links: IDuiLink[],
   toggleable?: boolean
@@ -34,6 +38,8 @@ type Props = {
 
 function DuiMenu(props: Props & IDuiColors) {
   const [isMenuVisible, setMenuVisibility] = useState(false);
+
+  const Component = props.as;
 
   const stateClasses = () => {
     let classes = 'inline-flex';
@@ -78,6 +84,7 @@ function DuiMenu(props: Props & IDuiColors) {
                     `}
           >
             <DuiLink
+              as={Component}
               className={`py-2 w-full lg:w-auto ${props.nested ? '' : 'text-center'}`}
               onClick={() => setMenuVisibility(false)}
               {...t}
